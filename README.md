@@ -25,14 +25,30 @@ _Para despliguear el proyecto  es necesario contar con los siguientes componente
 |LIBRERIA esptool.py|libreria python |CONTROL DE REFLASH Y INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
 |FIRMWARE MICROPYTHON |--------------|----------|
 
-![ARQUITECTURA DEL ARRAYLIST PRINCIPAL O RECURSO DE LO SHULOS](https://raw.githubusercontent.com/DanyeDarko/Cine/master/ARREGLO.png)
+### Instalación de FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
 
+_Lo primero a realizar es borrar la **memoria FLASH** de nuestro dispositivo ,para asegurarnos que este libre 
+de configuraciones_
+_Mediante el gestor de paquetes de *python*,**PIP** instalaremos esptool.py , La cual puedes encontrar mas Documentacion en el [Repositorio Oficial de esptool.py](https://github.com/espressif/esptool/blob/master/esptool.py)
 
-```java
-ArrayList< List< List<Integer>>> listaTaquillas = new ArrayList< List< List< Integer>>>(); 
+```bash
+pip install esptool
 ```
+_Ahora procedemos a borrar la memoria flash de nuestro dispositivo ,Una ves conectado por USB verificamos el puerto de conexion o serial Hacia el componente *NodeMCU* y sus PINES RX Y TX_
+```bash
+dmesg | grep tty
+```
+_Normalmente tendremos disponible un puerto **ttyUSB0** para conexion en caso *Linux*  y **COM 5** en caso  *Windows* 
+_Procedemos a borrar la memoria flash una ves identificado el puerto de conexion al *NodeMCU*_
 
+```bash
+esptool.py /dev/ttyUSB0 erase_flash
+```
+_Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
+_Disponemos de el mediante [La pagina Oficial de MicroPython](https://micropython.org/download) en el apartado **ESP8266*_
 
-📌 **1 REPRESENTA UNA VENTA,POR LO TANTO SUMA VENTAS EN LA SALA QUE VENDIO Y POR SUPUESTO SUMA A LA TAQUILLA QUE VENDIO** 
+_Una vez descargado el firmware ,Abrimos una terminal en la locacion de descarga e instalamos el *firmware* en el *NodeMCU* Por el **puerto serial ttyUSB0**_
 
-📌 **0 REPRESENTA UNA DEVOLUCION POR LO TANTO RESTA VENTAS EN LA SALA QUE DEVOLVIO,Y SUMA DEVOLUCIONES,POR SUPUESTO RESTA LA TAQUILLA DONDE SE DEVOLVIO** 
+```bash
+esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
+```
