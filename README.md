@@ -47,7 +47,7 @@ $ esptool.py /dev/ttyUSB0 erase_flash
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
 
 
-![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://raw.githubusercontent.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
 
  
 _Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
