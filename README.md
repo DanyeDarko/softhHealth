@@ -86,7 +86,8 @@ _Lo primero que debemos realizar es un archivo en nuestra estacion de trabajo co
 _Este archivo esta nombrado en el proyecto cmo *pyhonSCRIPT.py* su contenido es el siguiente:_
 * **1.1 EXPORTAMOS LIBRERIAS Y UTILIDADES DE PYTHON :**  
 
-_*Es necesario importar librerias para el funcionamiento de algunos comandos sobre **NodeMcu**_*
+_Es necesario importar librerias para el funcionamiento de algunos comandos sobre **NodeMcu**_
+
    _**machine**: *Entrar en contacto con el Hardware de el modulo en este caso con los pines ,para encender el LED al conectarse a una red*_
    
    _**network**:*Configuracion y acceso a informacion de Interfaces de red*_
@@ -108,14 +109,40 @@ _Esta variable nos permitira hacer parpadear el chip ,con el uso de la libreria 
  pin = machine.Pin( 2 , machine.Pin.OUT)
 ```
 
-_Definimos un nuevo metodo dentro de esta clase ,con el cual nos vamos a conectar a Una red WIFI con dos parametros *SSID DE RED* Y *PASSWORD WPA/PSK DE LA RED* ,los cuales son recibidos como *parametros*_
+_Definimos un nuevo metodo dentro de esta clase ,con el cual nos vamos a conectar a Una red WIFI con dos parametros *SSID DE RED* Y *PASSWORD WPA/PSK DE LA RED* ,los cuales seran recibidos como *parametros* al llamar al metodo_
 
 ```python 
  def conectarWIFI( wifi_SSID , wifi_PSSWD):
 ```
-## Construido con 🛠️
+```python
+if not interfaz_wlan.active():
+         print('INTERFAZ NO ACTIVADA ,ACTIVANDO LA INTERFAZ WLAN ...')
+         interfaz_wlan.active(True)
+```
 
-_ _
+```
+  if not interfaz_wlan.isconnected():
+         print('\n CONECTANDO A LA RED ', end='')
+         interfaz_wlan.connect(wifi_SSID, wifi_PSSWD)
+```
+```python
+while not interfaz_wlan.isconnected():
+              print('.', end='')
+              pin.off()
+              time.sleep_ms(500)
+              pass
+```
+
+```python
+ import ubinascii
+    print()
+    print("DIRECCION MAC: ", ubinascii.hexlify(network.WLAN().config('mac'),':').decode())   # Imprime la dirección MAC
+ ```
+ ```python
+  print("WLAN IP/netmask/gtwy/DNS: ", interfaz_wlan.ifconfig(),"\n")
+```
+
+## Construido con 🛠️
 
 * [MycroPython](https://docs.micropython.org/en/latest/esp8266) - Interprete *Python* para *Microcontroladores*
 * [Docker](https://docs.docker.com) - Contenededores para Aplicaciones
