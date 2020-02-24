@@ -136,7 +136,7 @@ _Definimos un nuevo metodo dentro de esta clase ,con el cual nos vamos a conecta
 ```
 * **1.3.1 CONDICION BOLEANA DE INTERFAZ DE RED ACTIVA**
 
-_Comprobamos que la Interfaz se encuentre activa,con la ayuda de la variable creada con la libreria *network* ,llamamos al metodo *active()* que nos devuelve un valor **Falso** si esta desactivada o **True** si la interfaz esta activa 
+_Comprobamos que la Interfaz se encuentre activa,con la ayuda de la variable creada con la libreria *network* ,llamamos al metodo *active()* que nos devuelve un valor **Falso** si esta desactivada o **True** si la interfaz esta activa_
 
 ```python
 if not interfaz_wlan.active():
@@ -193,7 +193,7 @@ _Una ve explicadas estas lineas es necesaria compilarlas de una por una dentro d
   
   _Estando conectado a internet nos arrojara,Nuestra direccion IP si ya se encuentra conectada ,de lo contrario llamar el metodo nos ayudara a establecer comunicacion_
 
-![RESPUESTA A COMANDO DE CONEXION A RED WIFI](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+![RESPUESTA A COMANDO DE CONEXION A RED WIFI](https://github.com/DanyeDarko/softhHealth/blob/master/)
 
 
 
@@ -213,9 +213,9 @@ _Observamos que podemos tener los siguientes archivos_
 
 | **Nombre Archivo** | **Funcion** 
 | ----- | -----|
-|boot.py| se ejecuta siempre que se arranca el modulo (Si existe)|
-|webrepl_cfg.py| configuracion de la sesion WEB remota |
-|main.py| ejecutado despues de boot.py acciones secundaria|
+|**boot.py**| se ejecuta siempre que se arranca el modulo (Si existe)|
+|**webrepl_cfg.py**| configuracion de la sesion WEB remota |
+|**main.py**| ejecutado despues de boot.py acciones secundaria|
 
 _Colocamos la **direccion IP** que mantiene nuestro dispositivo en la Red ,el puerto sera por defecto,una ves ingresados camos click en conectar y realizara una nueva sesion al dispositivo ,Elegimso la Opcion **Browse Files** buscamos el script de Conexion Wifi y de Socket con web service para el envio de Datos y le damos enviar_
 
