@@ -21,10 +21,10 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 | MYCROPYTHON |FIRMWARE CONTROLADOR NodeMCU  | INTERFAZ DE PROGRAMACION HARDWARE / HTTP SERVER |
 | PROTOBOARD | TABLILLA DE CONEXIONES | NECESARIA PARA PRUEBAS |
 | PLACA FENOLICA | -----------------|----------------|
-|LIBRERIA esptool.py|libreria python |CONTROL DE REFLASH Y INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
-|FIRMWARE MICROPYTHON |--------------|----------|
+|LIBRERIA 'esptool.py '|LIBRERIA PYTHON |CONTROL DE FLASH E INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
 
-###INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
+
+### INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
 
 _Lo primero a realizar es borrar la **memoria FLASH** de nuestro dispositivo ,para asegurarnos que este libre 
 de configuraciones_
@@ -43,6 +43,13 @@ _Procedemos a borrar la memoria flash una ves identificado el puerto de conexion
 ```bash
 $ esptool.py /dev/ttyUSB0 erase_flash
 ```
+
+_Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
+
+
+![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://raw.githubusercontent.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+
+ 
 _Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
 _Disponemos de el mediante [La pagina Oficial de MicroPython](https://micropython.org/download) en el apartado **ESP8266*_
 
