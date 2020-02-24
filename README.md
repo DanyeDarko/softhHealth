@@ -52,3 +52,16 @@ _Una vez descargado el firmware ,Abrimos una terminal en la locacion de descarga
 ```bash
 esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
 ```
+## Autores ✒️
+
+_Universidad Politecnica del Valle de México_
+_Administracion de La funcion Informatica_
+
+* **Brito Zendejas Daniel** - *Infraestructura/Documentacion* -
+* **Cortes Barrera Kevin** - *Diseño de Hardware/Base De Datos* - 
+* **Cortes Rincon Yod** - *Diseño WEB/Diseño Electronico* -
+* **Muñoz Islas Jose Eduardo** - *Diseño Web/Documentacion* -
+* **Viques Silva Andrés** - *Infraestructura/Planeacion Operativa/* - 
+
+ 
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
