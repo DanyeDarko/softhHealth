@@ -1,0 +1,38 @@
+# SofthHealth 
+PROYECTO DE CONSTRUCCION DE UN DISPOSITIVO CAPAZ DE MONITOREAR LA TEMPERATURA Y 
+PULSO CARDIACO PARA SU ANALISIS Y REPRESENTACION MEDIANTE UN NAVEGADOR WEB ,CONSTRUIDO CON MYCROPYTHON COMO FIRMWARE 
+EN UN DISPOSITIVO  'NodeMCU ESP826' DE  2.4GHZ DE TRANSMISION CON UNA PILA TCP/IP INCLUIDA Y UNA SERIE DE SENSORES CONTROLADOS
+POR PINES MEDIANTE ORDENES PYTHON PARA PROGRAMAR EL MCU(MICROCONTROLADOR) DEL CHIP NODEMCU ESP8266
+
+## Comenzando 🚀
+Para Descargar y desplegar el proyecto Es necesario contar Con git ,una terminal o algun cliente git como lo es GitKraken,Plugins en VSC
+es necesario contar con
+```bash
+    $ git clone https://github.com/DanyeDarko/softhHealth.git
+ ```
+ ### Pre-requisitos 📋
+
+_Para despliguear el proyecto  es necesario contar con los siguientes componentes_
+
+
+
+| Componente | Caracteristicas | Uso |
+| ----- | ---- | ----- | 
+| NodeMCU ESP8266EX | 2,4GHZ 3.3 V ALIMENTACION  | CONEXION SENSORES-TCP/IP HTTP SERVER |
+| MYCROPYTHON |FIRMWARE CONTROLADOR NodeMCU  | INTERFAZ DE PROGRAMACION HARDWARE / HTTP SERVER |
+| PROTOBOARD | TABLILLA DE CONEXIONES | NECESARIA PARA PRUEBAS |
+| PLACA FENOLICA | -----------------|----------------|
+|LIBRERIA esptool.py|libreria python |CONTROL DE REFLASH Y INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
+|FIRMWARE MICROPYTHON |--------------|----------|
+
+![ARQUITECTURA DEL ARRAYLIST PRINCIPAL O RECURSO DE LO SHULOS](https://raw.githubusercontent.com/DanyeDarko/Cine/master/ARREGLO.png)
+
+
+```java
+ArrayList< List< List<Integer>>> listaTaquillas = new ArrayList< List< List< Integer>>>(); 
+```
+
+
+📌 **1 REPRESENTA UNA VENTA,POR LO TANTO SUMA VENTAS EN LA SALA QUE VENDIO Y POR SUPUESTO SUMA A LA TAQUILLA QUE VENDIO** 
+
+📌 **0 REPRESENTA UNA DEVOLUCION POR LO TANTO RESTA VENTAS EN LA SALA QUE DEVOLVIO,Y SUMA DEVOLUCIONES,POR SUPUESTO RESTA LA TAQUILLA DONDE SE DEVOLVIO** 
