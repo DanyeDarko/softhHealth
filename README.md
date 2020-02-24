@@ -45,9 +45,13 @@ $ esptool.py /dev/ttyUSB0 erase_flash
 ```
 
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
+* *Tamaño de flash 4m*
+* *Modelo de chip ESP8266ex
+* *Direccion MAC del chip*
+* *Estatus de borrado de flash*
 
 
-![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
+![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
 
  
 _Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
@@ -58,6 +62,11 @@ _Una vez descargado el firmware ,Abrimos una terminal en la locacion de descarga
 ```bash
 $ esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
 ```
+
+_La salida por consola sera bajo el siguiente codigo,si no existio ningun error en la escritura del firmware dentro del chip_
+
+![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
+
 ## ENTRANDO A CONSOLA MYCROPYTHON Y ENVIANDO SCRIPT DE CONEXION WIFI Y SOCKET A WEB SERVICE 📌
 _Para entrar a la consola es necesario un emulador como *Screen* ,*Teraterm* o *Picocom*,En nuestro caso optamos por Picocom
 la velocidad del puerto(**ttyUSB0 o COM**) sera : **115200**_
