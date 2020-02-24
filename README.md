@@ -45,13 +45,14 @@ $ esptool.py /dev/ttyUSB0 erase_flash
 ```
 
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
-* *Tamaño de flash 4m*
+* *Puerto serial de comunicacion*
+* *Tamaño de flash 4mb*
 * *Modelo de chip ESP8266ex
 * *Direccion MAC del chip*
 * *Estatus de borrado de flash*
 
 
-![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+![RESPUESTA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
 
  
 _Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
@@ -94,12 +95,14 @@ _Una ves dentro de la consola tecleamos :_
 _Seguimos las instrucciones de *asignacion de contraseña* y *Habilitar Control Web*_
 
 _Para nuestra conveniencia *WebREPL* ya tiene un [cliente Web](http://micropython.org/webrepl/) disponible para nosotros , podemos incluso instalarlo de forma Local desde su [repositorio](https://github.com/micropython/webrepl)_
+_ _ _
  📌 **NOTA: ANTES DE PROCEDER A ACCEDER POR WEBREPL PARA TRASNMITIR ARCHIVOS SCRIPT A FLASH DEBEMOS CONFIGURARLO COMO CLIENTE WIFI CON MICTOPYTHON MEDIANTE EL SERIAL TTYUSB0 Y PICOCOM(TERMINAL/CONSOLA)**
 
 _Lo primero que debemos realizar es un archivo en nuestra estacion de trabajo con su Editor o IDE preferido soportando Python ,guardar el archivo con extension **.py**_
 
 #### SCRIPT pythonSCRIPT.py 
 _Este archivo esta nombrado en el proyecto cmo *pyhonSCRIPT.py* su contenido es el siguiente:_
+
 * **1.1 EXPORTAMOS LIBRERIAS Y UTILIDADES DE PYTHON :**  
 
 _Es necesario importar librerias para el funcionamiento de algunos comandos sobre **NodeMcu**_
@@ -108,7 +111,7 @@ _Es necesario importar librerias para el funcionamiento de algunos comandos sobr
    
    _**network**:*Configuracion y acceso a informacion de Interfaces de red*_
    
-   _**time**:*Obtiene datos de tiempo y configura funcion de sleep para componentes*
+   _**time**:*Obtiene datos de tiempo y configura funcion de sleep para componentes*_
 ```python
  import machine,network,time # IMPORTACION DE LIBRERIAS NECESARIAS PARA FUNCIONAMIENTO DEL PROGRAMA
 ```
@@ -124,36 +127,60 @@ _Esta variable nos permitira hacer parpadear el chip ,con el uso de la libreria 
 ```python
  pin = machine.Pin( 2 , machine.Pin.OUT)
 ```
+* **1.3 CREACION DE METODO DE CONEXION A ROUTER O AP WIFI**
 
 _Definimos un nuevo metodo dentro de esta clase ,con el cual nos vamos a conectar a Una red WIFI con dos parametros *SSID DE RED* Y *PASSWORD WPA/PSK DE LA RED* ,los cuales seran recibidos como *parametros* al llamar al metodo_
 
 ```python 
  def conectarWIFI( wifi_SSID , wifi_PSSWD):
 ```
+* **1.3.1 CONDICION BOLEANA DE INTERFAZ DE RED ACTIVA**
+
+_Comprobamos que la Interfaz se encuentre activa,con la ayuda de la variable creada con la libreria *network* ,llamamos al metodo *active()* que nos devuelve un valor **Falso** si esta desactivada o **True** si la interfaz esta activa 
+
 ```python
 if not interfaz_wlan.active():
          print('INTERFAZ NO ACTIVADA ,ACTIVANDO LA INTERFAZ WLAN ...')
          interfaz_wlan.active(True)
 ```
 
-```
+_Si la Interfaz esta desactivada entonces con ayuda del mismo metodo mandando el parametro **True** activamos la interfaz dentro de nuestro dispositivo ,listo para su configuracion_
+
+
+* **1.3.2 CONDICION BOLEANA DE INTERFAZ DE CONEXION A WIFI ACTIVA**
+_Comprobamos si la interfaz se encuentra conectada a un dispositivo Router o AP con el metodo *isconnected()*,si devuelve falso esta sera asociada a un nuevo Router o AP con el metodo *connect(**wifi_ssid** ,**wifi_pasword**)* al cual se invoca y se le mandan las variables como parametros
+
+```python
   if not interfaz_wlan.isconnected():
          print('\n CONECTANDO A LA RED ', end='')
          interfaz_wlan.connect(wifi_SSID, wifi_PSSWD)
 ```
+* **1.3.3  BUCLE DE CONEXION A RED**
+
+_Mientras la red este desactivada y aun no establesca comunicacion  con el Router o AP ,Encenderemos el led de manete intermitente con la ayuda de la variable *pin* definida por la libreria *machine* para control de hardware y *time* para dormir el componente durante 500 milisegundos_
 ```python
 while not interfaz_wlan.isconnected():
               print('.', end='')
               pin.off()
               time.sleep_ms(500)
+              pin.on()
               pass
 ```
 
+* **1.4 IMPRESION DE DATOS DE INTERFAZES Y CONEXION DE RED
+_Si la conexion esta establecida ,la libreria *ubinascii* para caracteres y digitos numericos ,E imprimiremos la direccion **MAC** y la direccion **IP** de nuestra tarjeta para comprobar la conectividad_
 ```python
  import ubinascii
     print()
+```
+* **1.4.1 IMPRESION DE DIRECCION MAC 
+_Con ayuda de la libreria *network* y el metodo *config* para obtener la mac Decodificamos el hexadecimal para caracteres comunes y poder visualisarla_
+```Python
     print("DIRECCION MAC: ", ubinascii.hexlify(network.WLAN().config('mac'),':').decode())   # Imprime la dirección MAC
  ```
+ * **1.4.2 IMPRESION DE DIRECCION IP
+ _Con la variable creada para el control de la interfaz,utilizando el metodo *ifconfig()* obtendremos datos de la capa de Red de nuestro modulo ESP8266EX_
+ 
  ```python
   print("WLAN IP/netmask/gtwy/DNS: ", interfaz_wlan.ifconfig(),"\n")
 ```
