@@ -5,6 +5,7 @@ EN UN DISPOSITIVO  'NodeMCU ESP826' DE  2.4GHZ DE TRANSMISION CON UNA PILA TCP/I
 POR PINES MEDIANTE ORDENES PYTHON PARA PROGRAMAR EL MCU(MICROCONTROLADOR) DEL CHIP NODEMCU ESP8266
 
 ## Comenzando 🚀
+
 Para Descargar y desplegar el proyecto Es necesario contar Con git ,una terminal o algun cliente git como lo es GitKraken,Plugins en VSC
 es necesario contar con
 ```bash
@@ -22,6 +23,15 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 | PROTOBOARD | TABLILLA DE CONEXIONES | NECESARIA PARA PRUEBAS |
 | PLACA FENOLICA | -----------------|----------------|
 |LIBRERIA 'esptool.py '|LIBRERIA PYTHON |CONTROL DE FLASH E INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
+
+## Wiki 📖
++ [INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth#instalacion-de-firmware-en-placa-y-borrado-de-memoria-flash-)
++ [CONEXION POR CONSOLA A MYCROPYTHON](https://github.com/DanyeDarko/softhHealth#entrando-a-consola-mycropython--)
++ [SCRIPT pythonSCRIPT.py ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
++ [CONEXION Y ENVIO DE SCRIPTS POR INTERFAZ WEB](https://github.com/DanyeDarko/softhHealth#conexion-y-envio-de-scripts-por-webrepl--)
++ [DOCUMENTACION INDEX.HTML]()
++ [DOCUMENTACION BASE DE DATOS]()
++ [DOCUMENTACION DOCKERFILE]()
 
 
 ### INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
@@ -69,6 +79,7 @@ _La salida por consola sera bajo el siguiente codigo,si no existio ningun error 
 ![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
 
 ## ENTRANDO A CONSOLA MYCROPYTHON  📌
+
 _Para entrar a la consola es necesario un emulador como *Screen* ,*Teraterm* o *Picocom*,En nuestro caso optamos por Picocom
 la velocidad del puerto(**ttyUSB0 o COM**) sera : **115200**_
 
@@ -101,6 +112,7 @@ _ _ _
 _Lo primero que debemos realizar es un archivo en nuestra estacion de trabajo con su Editor o IDE preferido soportando Python ,guardar el archivo con extension **.py**_
 
 ## SCRIPT pythonSCRIPT.py  📖
+
 _Este archivo esta nombrado en el proyecto cmo *pyhonSCRIPT.py* su contenido es el siguiente:_
 
 * **1.1 EXPORTAMOS LIBRERIAS Y UTILIDADES DE PYTHON :**  
@@ -198,6 +210,7 @@ _Una ve explicadas estas lineas es necesaria compilarlas de una por una dentro d
 
 
 ### CONEXION Y ENVIO DE SCRIPTS POR WebREPL 🔩
+
 _Entramos al cliente WebREPL de nuestro navegador web o local ,para transmitir scripts a la memoria flash del dispositivo_
 
 _Antes de enviarlo ,dentro de la terminal de MycroPython por serial **ttyUSB0** o **COM** teclearemos los siguientes comandos_
@@ -222,6 +235,12 @@ _Colocamos la **direccion IP** que mantiene nuestro dispositivo en la Red ,el pu
 ![IMAGEN DE CONFIGURACION DE IP EN WERPL](https://github.com/DanyeDarko/softhHealth/blob/master/)
 
 _Volvemos a enlistar los archivos y notaremos que existe uno nuevo llamado *scriptPython.py* el cual contendra las instrucciones para conexion a un router WIFI o AP y el socket API de  envio de datos a un servidor_
+
+
+
+
+## INDEX HTML  📖
+
 
 ## Construido con 🛠️
 
