@@ -31,17 +31,17 @@ de configuraciones_
 _Mediante el gestor de paquetes de *python*,**PIP** instalaremos esptool.py , La cual puedes encontrar mas Documentacion en el [Repositorio Oficial de esptool.py](https://github.com/espressif/esptool/blob/master/esptool.py)_
 
 ```bash
-$ pip install esptool
+ $ pip install esptool
 ```
 _Ahora procedemos a borrar la memoria flash de nuestro dispositivo ,Una ves conectado por USB verificamos el puerto de conexion o serial Hacia el componente *NodeMCU* y sus PINES RX Y TX_
 ```bash
-$ dmesg | grep tty
+ $ dmesg | grep tty
 ```
 _Normalmente tendremos disponible un puerto **ttyUSB0** para conexion en caso *Linux*  y **COM 5** en caso  *Windows*_
 _Procedemos a borrar la memoria flash una ves identificado el puerto de conexion al *NodeMCU*_
 
 ```bash
-$ esptool.py /dev/ttyUSB0 erase_flash
+ $ esptool.py /dev/ttyUSB0 erase_flash
 ```
 
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
@@ -61,19 +61,19 @@ _Disponemos de el mediante [La pagina Oficial de MicroPython](https://micropytho
 _Una vez descargado el firmware ,Abrimos una terminal en la locacion de descarga e instalamos el *firmware* en el *NodeMCU* Por el **puerto serial ttyUSB0**_
 
 ```bash
-$ esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
+ $ esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
 ```
 
 _La salida por consola sera bajo el siguiente codigo,si no existio ningun error en la escritura del firmware dentro del chip_
 
 ![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
 
-## ENTRANDO A CONSOLA MYCROPYTHON Y ENVIANDO SCRIPT DE CONEXION WIFI Y SOCKET A WEB SERVICE 📌
+## ENTRANDO A CONSOLA MYCROPYTHON  📌
 _Para entrar a la consola es necesario un emulador como *Screen* ,*Teraterm* o *Picocom*,En nuestro caso optamos por Picocom
 la velocidad del puerto(**ttyUSB0 o COM**) sera : **115200**_
 
 ```bash
-$ picocom /dev/ttyUSB0 -p1152000 
+ $ picocom /dev/ttyUSB0 -p1152000 
 ```
 
 _La salida de la consola sera parecida a la siguiente :_
@@ -100,7 +100,7 @@ _ _ _
 
 _Lo primero que debemos realizar es un archivo en nuestra estacion de trabajo con su Editor o IDE preferido soportando Python ,guardar el archivo con extension **.py**_
 
-#### SCRIPT pythonSCRIPT.py 
+## SCRIPT pythonSCRIPT.py  📖
 _Este archivo esta nombrado en el proyecto cmo *pyhonSCRIPT.py* su contenido es el siguiente:_
 
 * **1.1 EXPORTAMOS LIBRERIAS Y UTILIDADES DE PYTHON :**  
@@ -167,23 +167,61 @@ while not interfaz_wlan.isconnected():
               pass
 ```
 
-* **1.4 IMPRESION DE DATOS DE INTERFAZES Y CONEXION DE RED
+* **1.4 IMPRESION DE DATOS DE INTERFAZES Y CONEXION DE RED**
 _Si la conexion esta establecida ,la libreria *ubinascii* para caracteres y digitos numericos ,E imprimiremos la direccion **MAC** y la direccion **IP** de nuestra tarjeta para comprobar la conectividad_
 ```python
  import ubinascii
     print()
 ```
-* **1.4.1 IMPRESION DE DIRECCION MAC 
+* **1.4.1 IMPRESION DE DIRECCION MAC** 
 _Con ayuda de la libreria *network* y el metodo *config* para obtener la mac Decodificamos el hexadecimal para caracteres comunes y poder visualisarla_
 ```Python
     print("DIRECCION MAC: ", ubinascii.hexlify(network.WLAN().config('mac'),':').decode())   # Imprime la dirección MAC
  ```
- * **1.4.2 IMPRESION DE DIRECCION IP
+ * **1.4.2 IMPRESION DE DIRECCION IP**
  _Con la variable creada para el control de la interfaz,utilizando el metodo *ifconfig()* obtendremos datos de la capa de Red de nuestro modulo ESP8266EX_
  
  ```python
   print("WLAN IP/netmask/gtwy/DNS: ", interfaz_wlan.ifconfig(),"\n")
 ```
+
+_Una ve explicadas estas lineas es necesaria compilarlas de una por una dentro de **Picocom** o el emulador de terminal de preferencia ,via tty o serial de comunicacion hacia la placa ejecutaremos de la siguiente manera :_
+
+ ```python
+ >> conectarWIFI( 'ssid_de_Red_a_Conectar', 'password_de_Red_a_Conectar'):
+  ```
+  
+  _Estando conectado a internet nos arrojara,Nuestra direccion IP si ya se encuentra conectada ,de lo contrario llamar el metodo nos ayudara a establecer comunicacion_
+
+![RESPUESTA A COMANDO DE CONEXION A RED WIFI](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+
+
+
+### CONEXION Y ENVIO DE SCRIPTS POR WebREPL 🔩
+_Entramos al cliente WebREPL de nuestro navegador web o local ,para transmitir scripts a la memoria flash del dispositivo_
+
+_Antes de enviarlo ,dentro de la terminal de MycroPython por serial **ttyUSB0** o **COM** teclearemos los siguientes comandos_
+
+ ```python
+ >> import os
+  ```
+  _Importamos la libreria *OS* para modalidades de sistema Operativo como leer archivos ,crear y listar  directorios,lo cual realizaremos para ver el contenido de la flash con el metodo **listdir()**  de la libreria *OS* :_
+ ```python
+ >> os.listdir()
+  ```
+_Observamos que podemos tener los siguientes archivos_
+
+| **Nombre Archivo** | **Funcion** 
+| ----- | -----|
+|boot.py| se ejecuta siempre que se arranca el modulo (Si existe)|
+|webrepl_cfg.py| configuracion de la sesion WEB remota |
+|main.py| ejecutado despues de boot.py acciones secundaria|
+
+_Colocamos la **direccion IP** que mantiene nuestro dispositivo en la Red ,el puerto sera por defecto,una ves ingresados camos click en conectar y realizara una nueva sesion al dispositivo ,Elegimso la Opcion **Browse Files** buscamos el script de Conexion Wifi y de Socket con web service para el envio de Datos y le damos enviar_
+
+![IMAGEN DE CONFIGURACION DE IP EN WERPL](https://github.com/DanyeDarko/softhHealth/blob/master/)
+
+_Volvemos a enlistar los archivos y notaremos que existe uno nuevo llamado *scriptPython.py* el cual contendra las instrucciones para conexion a un router WIFI o AP y el socket API de  envio de datos a un servidor_
 
 ## Construido con 🛠️
 
