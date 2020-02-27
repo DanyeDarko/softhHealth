@@ -51,7 +51,7 @@ _Normalmente tendremos disponible un puerto **ttyUSB0** para conexion en caso *L
 _Procedemos a borrar la memoria flash una ves identificado el puerto de conexion al *NodeMCU*_
 
 ```bash
- $ esptool.py /dev/ttyUSB0 erase_flash
+ $ esptool.py --port /dev/ttyUSB0 erase_flash
 ```
 
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
