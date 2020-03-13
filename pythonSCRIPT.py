@@ -5,8 +5,8 @@ interfaz_wlan = network.WLAN(network.STA_IF)
 pin = machine.Pin( 2 , machine.Pin.OUT)
 ledPulso = machine.PWM(machine.Pin(4), freq=400)
 d = OrderedDict([("z", 1), ("a", 2)])    
-d["w"] = 5
-d["b"] = 3
+d["pulsos"] = 5
+d["pulsos"] = 3
 
 def conectarWIFI( wifi_SSID , wifi_PSSWD):
     if not interfaz_wlan.active():
@@ -33,6 +33,7 @@ def pulsoCardiaco(led, tiempoPulso):
      time.sleep_ms(1000)
      while True:
           pulso = pulso + 1
+          d = ["pulso"]= pulso
           print('PULSOS',pulso) 
           for i in range(10):
                led.duty(int(math.sin(i / 10 * math.pi) * 500 + 500))
