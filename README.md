@@ -1,16 +1,15 @@
 # SofthHealth 
 PROYECTO DE CONSTRUCCION DE UN DISPOSITIVO CAPAZ DE MONITOREAR LA TEMPERATURA Y 
-PULSO CARDIACO PARA SU ANALISIS Y REPRESENTACION MEDIANTE UN NAVEGADOR WEB ,CONSTRUIDO CON MYCROPYTHON COMO FIRMWARE 
-EN UN DISPOSITIVO  'NodeMCU ESP826' DE  2.4GHZ DE TRANSMISION CON UNA PILA TCP/IP INCLUIDA Y UNA SERIE DE SENSORES CONTROLADOS
-POR PINES MEDIANTE ORDENES PYTHON PARA PROGRAMAR EL MCU(MICROCONTROLADOR) DEL CHIP NODEMCU ESP8266
+PULSO CARDIACO CON EL USO DE SENSORES ,LOS CUALES ESTARAN CONECTADOS A UN DISPOSITIVO **'NodeMCU ESP8264'**  DE  2.4GHZ DE TRANSMISION CON UNA PILA TCP/IP INCLUIDA PARA REALIZAR METODOS **POST** Y **GET**  A UNA API FLASK LA CUAL RENDERIZA LOS DATOS EN TIEMPO REAL , EL FIRMWARE MYCROPYTHON NOS PERMITIRA TOMAR EL CONTROL DE NUESTRA PLACA MEDIANTE LENGUAJE **Python**
 
 ## Comenzando 🚀
 
-Para Descargar y desplegar el proyecto Es necesario contar Con git ,una terminal o algun cliente git como lo es GitKraken,Plugins en VSC
-es necesario contar con
+Para Descargar y desplegar el proyecto Es necesario contar con git ,una terminal o algun cliente git como lo es GitKraken,Plugins en VSC
+
 ```bash
     $ git clone https://github.com/DanyeDarko/softhHealth.git
  ```
+
  ### Pre-requisitos 📋
 
 _Para despleguear el proyecto  es necesario contar con los siguientes componentes_
@@ -21,17 +20,22 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 | NodeMCU ESP8266EX | 2,4GHZ 3.3 V ALIMENTACION  | CONEXION SENSORES-TCP/IP HTTP SERVER |
 | MYCROPYTHON |FIRMWARE CONTROLADOR NodeMCU  | INTERFAZ DE PROGRAMACION HARDWARE / HTTP SERVER |
 | PROTOBOARD | TABLILLA DE CONEXIONES | NECESARIA PARA PRUEBAS |
-| PLACA FENOLICA | -----------------|----------------|
 |LIBRERIA 'esptool.py '|LIBRERIA PYTHON |CONTROL DE FLASH E INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
+|PYTHON/FLASK|LENGUAJE DE PROGRAMACION/MICROFRAMEWORK |DESPLIEGE DE API PYTHON / WEB SERVER APP SOFHTHEALTH |
+|SQLAlchemy|  |DESPLIEGE DE API PYTHON / WEB SERVER APP SOFHTHEALTH |
+|DOCKER |CONTENEDORES LINUX |EMPAQUETAR APLICACION PARA SU INTEGRACION Y DESPLIEGE AGIL | 
+
+
 
 ## Wiki 📖
 + [INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth#instalacion-de-firmware-en-placa-y-borrado-de-memoria-flash-)
 + [CONEXION POR CONSOLA A MYCROPYTHON](https://github.com/DanyeDarko/softhHealth#entrando-a-consola-mycropython--)
-+ [SCRIPT pythonSCRIPT.py ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
-+ [CONEXION Y ENVIO DE SCRIPTS POR INTERFAZ WEB](https://github.com/DanyeDarko/softhHealth#conexion-y-envio-de-scripts-por-webrepl--)
-+ [DOCUMENTACION INDEX.HTML]()
-+ [DOCUMENTACION BASE DE DATOS]()
-+ [DOCUMENTACION DOCKERFILE]()
++ [SCRIPT DE CONTROL MICROPYTHON ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
++ [INTEGRACION DE SENSORES](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
++ [CONTENEDOR MYSQL SERVER ](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
++ [CONSTRUCCION API FLASK](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
++ [CONEXION FLASK/MYSQL](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
++ [CONTENEDOR FLASK SERVER](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
 
 
 ### INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
@@ -78,7 +82,7 @@ _La salida por consola sera bajo el siguiente codigo,si no existio ningun error 
 
 ![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
 
-## ENTRANDO A CONSOLA MYCROPYTHON  📌
+## CONEXION POR CONSOLA A MYCROPYTHON 📟
 
 _Para entrar a la consola es necesario un emulador como *Screen* ,*Teraterm* o *Picocom*,En nuestro caso optamos por Picocom
 la velocidad del puerto(**ttyUSB0 o COM**) sera : **115200**_
