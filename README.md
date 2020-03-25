@@ -22,7 +22,7 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 | PROTOBOARD | TABLILLA DE CONEXIONES | NECESARIA PARA PRUEBAS |
 |LIBRERIA 'esptool.py '|LIBRERIA PYTHON |CONTROL DE FLASH E INSTALACION FIRMWARE  MYCROPYTHON PARA LINUX-NodeMCU | 
 |PYTHON/FLASK|LENGUAJE DE PROGRAMACION/MICROFRAMEWORK |DESPLIEGE DE API PYTHON / WEB SERVER APP SOFHTHEALTH |
-|SQLAlchemy|  |DESPLIEGE DE API PYTHON / WEB SERVER APP SOFHTHEALTH |
+|SQLAlchemy| MODELADO DATABASE/BACKEND |DESPLIEGE DE API PYTHON / WEB SERVER APP SOFHTHEALTH | 
 |DOCKER |CONTENEDORES LINUX |EMPAQUETAR APLICACION PARA SU INTEGRACION Y DESPLIEGE AGIL | 
 
 
@@ -31,10 +31,10 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 + [INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth#instalacion-de-firmware-en-placa-y-borrado-de-memoria-flash-)
 + [CONEXION POR CONSOLA A MYCROPYTHON](https://github.com/DanyeDarko/softhHealth#entrando-a-consola-mycropython-)
 + [SCRIPT DE CONTROL MICROPYTHON ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy-)
-+ [INTEGRACION DE SENSORES](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
-+ [CONTENEDOR MYSQL SERVER ](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
-+ [CONSTRUCCION API FLASK](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
-+ [CONTENEDOR FLASK SERVER](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
++ [INTEGRACION DE SENSORES](https://github.com/DanyeDarko/softhHealth#integracion-de-sensores-)
++ [CONTENEDOR MYSQL SERVER ](https://github.com/DanyeDarko/softhHealth#contenedor-mysql-)
++ [CONSTRUCCION API FLASK](https://github.com/DanyeDarko/softhHealth#construccion-api-flask-)
++ [CONTENEDOR FLASK SERVER](https://github.com/DanyeDarko/softhHealth#contenedor-flask-server-)
 
 
 ### INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
