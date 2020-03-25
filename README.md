@@ -29,12 +29,11 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 
 ## Wiki 📖
 + [INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth#instalacion-de-firmware-en-placa-y-borrado-de-memoria-flash-)
-+ [CONEXION POR CONSOLA A MYCROPYTHON](https://github.com/DanyeDarko/softhHealth#entrando-a-consola-mycropython--)
-+ [SCRIPT DE CONTROL MICROPYTHON ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
++ [CONEXION POR CONSOLA A MYCROPYTHON](https://github.com/DanyeDarko/softhHealth#entrando-a-consola-mycropython-)
++ [SCRIPT DE CONTROL MICROPYTHON ](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy-)
 + [INTEGRACION DE SENSORES](https://github.com/DanyeDarko/softhHealth#script-pythonscriptpy--)
 + [CONTENEDOR MYSQL SERVER ](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
 + [CONSTRUCCION API FLASK](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
-+ [CONEXION FLASK/MYSQL](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
 + [CONTENEDOR FLASK SERVER](https://github.com/DanyeDarko/softhHealth#Docker MYSQL--)
 
 
@@ -241,6 +240,14 @@ _Colocamos la **direccion IP** que mantiene nuestro dispositivo en la Red ,el pu
 _Volvemos a enlistar los archivos y notaremos que existe uno nuevo llamado *scriptPython.py* el cual contendra las instrucciones para conexion a un router WIFI o AP y el socket API de  envio de datos a un servidor_
 
 
+## INTEGRACION DE SENSORES 🔗 
+
+
+## CONTENEDOR MYSQL 🚢
+
+## CONSTRUCCION API FLASK 🐍
+
+## CONTENEDOR FLASK SERVER 🚢
 
 
 ## INDEX HTML  📖
