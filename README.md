@@ -1,13 +1,13 @@
 # SofthHealth 
 PROYECTO DE CONSTRUCCION DE UN DISPOSITIVO CAPAZ DE MONITOREAR LA TEMPERATURA Y 
-PULSO CARDIACO CON EL USO DE SENSORES ,LOS CUALES ESTARAN CONECTADOS A UN DISPOSITIVO **'NodeMCU ESP8264'**  DE  2.4GHZ DE TRANSMISION CON UNA PILA TCP/IP INCLUIDA PARA REALIZAR METODOS **POST** Y **GET**  A UNA API FLASK LA CUAL RENDERIZA LOS DATOS EN TIEMPO REAL , EL FIRMWARE MYCROPYTHON NOS PERMITIRA TOMAR EL CONTROL DE NUESTRA PLACA MEDIANTE LENGUAJE **Python**
+PULSO CARDIACO CON EL USO DE SENSORES ,LOS CUALES ESTARAN CONECTADOS A UN DISPOSITIVO **'NodeMCU ESP8264'** EL CUAL INCLUYE  TCP/IP STACK INCLUIDO QUE NOS PERTMITIRA LA PROGRAMACION DE EL CHIP ,REALISANDO EL CONSUMO DEUNA API FLASK LA CUAL RENDERIZA LOS DATOS EN TIEMPO REAL , EL FIRMWARE MYCROPYTHON NOS PERMITIRA TOMAR EL CONTROL DE NUESTRA PLACA MEDIANTE LENGUAJE **Python**
 
 ## Comenzando 🚀
 
-Para Descargar y desplegar el proyecto Es necesario contar con git ,una terminal o algun cliente git como lo es GitKraken,Plugins en VSC
+Para Descargar y desplegar el proyecto Es necesario contar con git ,una terminal o algun cliente git como lo es GitKraken,Plugins incluidos en IDE's.
 
 ```bash
-    $ git clone https://github.com/DanyeDarko/softhHealth.git
+     $ git clone https://github.com/DanyeDarko/softhHealth.git
  ```
 
  ### Pre-requisitos 📋
@@ -36,25 +36,31 @@ _Para despleguear el proyecto  es necesario contar con los siguientes componente
 + [CONSTRUCCION API FLASK](https://github.com/DanyeDarko/softhHealth#construccion-api-flask-)
 + [CONTENEDOR FLASK SERVER](https://github.com/DanyeDarko/softhHealth#contenedor-flask-server-)
 
+### ENTORNO VIRTUAL DE TRABAJO 
+por buenas practicas es recomendable crear un entorno virtual antes de comensar a trabajar(durante el desarrollo del proyecto se utiliso python en su version 3.7.3)
+
+ ```bash
+ $ python3 -m venv [virtualenv_name]; source [virtualenv_name ]/bin/activate
+```
 
 ### INSTALACION DE FIRMWARE EN PLACA Y BORRADO DE MEMORIA FLASH 🔧
 
-_Lo primero a realizar es borrar la **memoria FLASH** de nuestro dispositivo ,para asegurarnos que este libre 
-de configuraciones_
-_Mediante el gestor de paquetes de *python*,**PIP** instalaremos esptool.py , La cual puedes encontrar mas Documentacion en el [Repositorio Oficial de esptool.py](https://github.com/espressif/esptool/blob/master/esptool.py)_
+Lo primero a realizar es borrar la **memoria FLASH** de nuestro dispositivo ,para asegurarnos que este libre 
+de configuraciones
+Mediante el gestor de paquetes de *python*,**PIP** instalaremos esptool , La cual puedes encontrar mas documentacion en el [Repositorio Oficial de esptool.py](https://github.com/espressif/esptool/blob/master/esptool.py)
 
 ```bash
  $ pip install esptool
 ```
-_Ahora procedemos a borrar la memoria flash de nuestro dispositivo ,Una ves conectado por USB verificamos el puerto de conexion o serial Hacia el componente *NodeMCU* y sus PINES RX Y TX_
+Ahora procedemos a borrar la memoria flash de nuestro dispositivo ,Una ves conectado por USB verificamos el puerto de conexion o serial Hacia el componente *NodeMCU* y sus PINES RX Y TX
 ```bash
- $ dmesg | grep tty
+ # dmesg | grep -i tty
 ```
-_Normalmente tendremos disponible un puerto **ttyUSB0** para conexion en caso *Linux*  y **COM 5** en caso  *Windows*_
+Normalmente tendremos disponible un puerto **ttyUSB0** para conexion en caso *Linux*  y **COM 5** en caso  *Windows*_,solo se puede acceder a la gestion de estos puertos mediante permisos de usuario administrador ,por lo que para realisar esto se debera activar el entorno virtual como administrador o root.
 _Procedemos a borrar la memoria flash una ves identificado el puerto de conexion al *NodeMCU*_
 
 ```bash
- $ esptool.py --port /dev/ttyUSB0 erase_flash
+ # esptool.py --port /dev/ttyUSB0 erase_flash
 ```
 
 _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas de salida :_
@@ -65,21 +71,21 @@ _Si el procedimiento es el correcto nos encontraremos con las siguientes lineas 
 * *Estatus de borrado de flash*
 
 
-![RESPUESTA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/imagen2.png)
+![STDOUT AL COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/recursosREADME/image2.png)
 
  
-_Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con MyCROPYTHON_
+Nececitamos disponer ahora del *Firmware* que nos permitira controlar el MCU del dispositivo *NodeMCU* con *MyCROPYTHON*
 _Disponemos de el mediante [La pagina Oficial de MicroPython](https://micropython.org/download) en el apartado **ESP8266*_
 
 _Una vez descargado el firmware ,Abrimos una terminal en la locacion de descarga e instalamos el *firmware* en el *NodeMCU* Por el **puerto serial ttyUSB0**_
 
 ```bash
- $ esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
+ # esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.11.7.bin
 ```
 
 _La salida por consola sera bajo el siguiente codigo,si no existio ningun error en la escritura del firmware dentro del chip_
 
-![RESPUESRA A COMANDO DE BORRADO DE MEMORIA FLASH](https://github.com/DanyeDarko/softhHealth/blob/master/image.png)
+![STDOUT AL COMANDO DE INSTALACION DE FIRMWARE](https://github.com/DanyeDarko/softhHealth/blob/master/recursosREADME/image2.png)
 
 ## CONEXION POR CONSOLA A MYCROPYTHON 📟
 
@@ -265,16 +271,4 @@ _Volvemos a enlistar los archivos y notaremos que existe uno nuevo llamado *scri
 * [Sensor Pulso Cardiaco](https://github.com/esp8266/Arduino) - SENSOR PARA MEDICION DE TEMPERATURA
 
 ## Autores ✒️
-
-*_Universidad Politecnica del Valle de México_*
-
-*_Administracion de La funcion Informatica_*
-
-* **Brito Zendejas Daniel** - *Infraestructura/Documentacion* -
-* **Cortes Barrera Kevin** - *Diseño de Hardware/Base De Datos* - 
-* **Cortes Rincon Yod** - *Diseño WEB/Diseño Electronico* -
-* **Muñoz Islas Jose Eduardo** - *Diseño Web/Documentacion* -
-* **Viques Silva Andrés** - *Infraestructura/Planeacion Operativa/* - 
-
- 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/DanyeDarko/softhHealth/graphs/contributors) quíenes han participado en este proyecto. 
+nadiel 
