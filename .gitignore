@@ -1,1 +1,2 @@
-webrepl-master 
+.bin*
+/virtualenv 
